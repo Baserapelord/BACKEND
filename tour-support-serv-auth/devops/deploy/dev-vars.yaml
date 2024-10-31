@@ -1,0 +1,20 @@
+health_probes: 'on'
+health_path: "/tmf-support-serv-consulta-oac/v1/actuator/health"
+health_initialdelayseconds: 20
+health_timeoutseconds: 10
+health_periodSeconds: 30
+#### Vars related to readiness and liveness ####
+
+environment_vars:
+###### Binding Secrets ######
+  - name: OAC_USER
+    value: 'null'
+    secret_name: tmf-openapi-secret
+    secret_key: OAC_USER
+  - name: OAC_PWD
+    value: 'null'
+    secret_name: tmf-openapi-secret
+    secret_key: OAC_PWD
+
+
+

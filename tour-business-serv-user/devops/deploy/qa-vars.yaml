@@ -1,0 +1,16 @@
+health_probes: 'on'
+health_path: /tmf-business-serv-geographicsite/v1/actuator/health
+health_initialdelayseconds: 180
+health_timeoutseconds: 10
+health_periodSeconds: 30
+resource: execute-payment
+domain: alta
+appgroup: crm-web-app
+tiermsa: experience
+tier: backend
+object: API
+environment_vars:
+- name: PROJECT_NAME
+  value: WEB PREPAGO
+- name: PRODUCT_NAME
+  value: WebPrepago

@@ -1,0 +1,48 @@
+server:
+    port: 8080
+    servlet:
+        contextPath: /5ta-business-serv-uit/v1
+spring:
+    application:
+        name: 5ta-business-serv-uit
+    
+application:
+    mock: 1
+    maverick:
+        api:
+            path: /5ta-business-serv-uit/v1
+    properties:
+        erroCodeMap:
+            '1': IDFF1
+            '2': IDFF2
+        grupo: 230520
+        idTransaccion: idTransaccion
+        msgid: msgid
+        userId: userId
+        timestamp: timestamp
+        stateOk: 0
+        codeResponseOk: 0
+        userIdValue: usrear
+        tecnicalCode: IDTT1
+        tecnicalMessage: 'Servicio no se encuentra disponible'
+
+info:
+    project:
+        version: 1.0.0.RC1
+        title: 5ta-business-serv-uit.0
+        description: 'Microservicio para obtener UIT'
+
+log_level: INFO
+
+characteristic:
+    name: Proyecto
+    
+codigo:
+    generico:
+        error:
+            bd:
+                disponibilidad: IDT02
+                inesperado: IDT03
+                timeout: IDT01
+    
+      

@@ -1,0 +1,26 @@
+#### Vars related to readiness and liveness ####
+# health_probes: 'on|off'
+health_probes: 'on'
+# path from management.context-path defined on config server
+health_path: "/mvr-support-serv-document-sgads/v1/actuator/health"
+# initial delay depends on app average startup time
+health_initialdelayseconds: 180
+health_timeoutseconds: 10
+health_periodSeconds: 30
+#### Vars related to readiness and liveness ####
+
+
+########### Labels FusionStage #######
+resource: "document"
+domain: "common"
+appgroup: "document-management"
+tiermsa: "support"
+tier: "backend"
+object: "TMF-OPENAPI"
+
+####### Labels Logback #########
+environment_vars:
+  - name: PROJECT_NAME
+    value: "Arquitectura de Microservicios"
+  - name: PRODUCT_NAME
+    value: "Desarrollo de Microservicios"

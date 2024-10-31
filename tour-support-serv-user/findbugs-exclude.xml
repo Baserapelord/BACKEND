@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Package name="~pe\.com\.claro\.maverick\.core\.model\**.*"/>
+        <Bug pattern="UUF_UNUSED_FIELD, EI_EXPOSE_REP, EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <Package name="~org\.springframework\.cloud\.config\**.*"/>
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE, PATH_TRAVERSAL_IN, WMI_WRONG_MAP_ITERATOR, EI_EXPOSE_REP"/>
+    </Match>
+</FindBugsFilter>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<springProperty scope="context" name="springAppName" source="spring.application.name" />
+	<springProperty scope="context" name="infoProjectVersion" source="info.project.version" />
+	
+	<springProperty scope="context" name="LEVEL" source="log_level"/>
+	
+	<springProfile name="!default">
+	<appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+ 		<!-- <destination>localhost:8080</destination> -->
+		<destination>${LOGSTASH_SOCKET}</destination>
+		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+			<providers>
+				<timestamp />
+				<pattern>
+					<!-- we can add some custom fields to be sent with all the log entries. -->
+					<!--make filtering easier in Logstash -->
+					<!--or searching with Kibana -->
+					<pattern>
+						{
+						"event-emitter":"${EVENT_EMITTER_LOG}",
+						"project-name": "${PROJECT_NAME}",
+						"product-name": "${PRODUCT_NAME}",
+						"environment": "${SPRING_PROFILES_ACTIVE}",
+						"component-name": "${springAppName}",
+						"component-version": "${infoProjectVersion}"
+						}
+					</pattern>
+				</pattern>
+				<version /> <!-- Logstash json format version, the @version field in the output -->
+				<logLevel />
+				<loggerName />
+				<threadName />
+				<message />
+				<stackTrace />
+				<mdc /> <!-- MDC variables on the Thread will be written as JSON fields -->
+				<context /> <!--Outputs entries from logback's context -->
+				<logstashMarkers /> <!-- Useful so we can add extra information for specific log lines as Markers -->
+				<arguments /> <!--or through StructuredArguments -->
+			</providers>
+		</encoder>
+	</appender>
+	<!-- <root level="#logback.loglevel#"> -->
+	<root level="${LEVEL}">
+		<appender-ref ref="STASH" />
+	</root>
+</springProfile>
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level)
+				%logger{36}.%M - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<springProfile name="default">
+	<root level="${LEVEL}">
+		<appender-ref ref="STDOUT" />
+	</root>
+	</springProfile>
+	<logger name="pe.com.claro" level="${LEVEL}"/>
+
+	<contextListener
+		class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+
+</configuration>

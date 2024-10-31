@@ -1,0 +1,66 @@
+log_level: INFO
+server:
+  port: 8090
+  servlet:
+    context-path: /tmf-support-serv-consulta-oac/v1
+spring:
+  application:
+    name: tmf-support-serv-consulta-oac
+  main:
+    allow-bean-definition-overriding: true
+application:
+  maverick:
+    api:
+      path: /tmf-support-serv-consulta-oac/v1
+    datasource:
+      connection:
+       url: jdbc:oracle:thin:@//localhost:1533/TEST
+       username: apps
+       password: apps       
+       maxPoolSizeSeconds: 60
+       maxIdleTimeSeconds: 60
+  properties:
+    codapp: TMFORUM
+    usrapp: USRTMF  
+characteristic:
+    name: Proyecto
+    
+codigo:
+    generico:
+        error:
+            bd:
+                disponibilidad: IDT02
+                inesperado: IDT03
+                timeout: IDT01
+            idf01: IDF01
+            
+db:
+    error:
+        SqlTimeoutException: SQLTimeoutException
+    apps:
+        owner: APPS
+    oac: OAC
+    
+mensaje:
+    generico:
+        error:
+            bd:
+                disponibilidad: 'Error de disponibilidad de  $bd - $sp  :'
+                timeout: 'Error de timeout en $bd - $sp  :'
+            idf01: 'No existen datos'
+relatedParty:
+    role: Cliente
+sp:
+    apps:
+        consultadeuda: TS_OAC_CL_CONSULTA_DEUDA_PKG.pr_consulta_deuda_docid_ws
+        consultadeudaone: TS_OAC_CL_CONSULTA_DEUDA_PKG.pr_consulta_deuda_docid_ws_one
+        consultadeudaopenapi: TS_OAC_CL_CONSULTA_PKG.pr_estado_cuenta_openapi
+
+
+info:
+  project:
+    version: 1.0.0.RC1
+    title: tmf-support-serv-consulta-oac-v1.0
+    description: Servicio de soporte de TMF OpenApis para el acceso a la BD OAC para consultas
+ 
+    
